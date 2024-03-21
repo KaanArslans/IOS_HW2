@@ -46,11 +46,19 @@ class InputVC: UIViewController {
     
     @IBAction func DoneCalculation(_ sender: UIButton) {
         if(isShapeSphere!){
+            if(radiusText.text!.isEmpty){
+                displayAlert(header: "Empty", msg:"Can not be empty")
+                return
+            }
             radius=Double(radiusText.text!)!
             height=1.0
             
         }
         else{
+            if(radiusText.text!.isEmpty||heighttext.text!.isEmpty){
+                displayAlert(header: "Empty", msg:"Can not be empty")
+                return
+            }
             radius=Double(radiusText.text!)!
             height=Double(heighttext.text!)!
         }
@@ -70,5 +78,17 @@ class InputVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func displayAlert(header: String, msg: String) {
+        // Creating an Alert and display the result
+        let mAlert = UIAlertController(title: header, message: msg, preferredStyle: UIAlertController.Style.alert)
+        // Event Handler for the button
+        mAlert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
+        // Displaying the Alert
+        self.present(mAlert, animated: true, completion: nil)
+    }
 
 }
+
+
+
